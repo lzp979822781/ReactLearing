@@ -7,6 +7,40 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="example1"></div>
     
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(){
+                super();
+                console.log(this);
+                this.handleClick = this.handleClick.bind(this);
+                console.log(this);
+            }
+            handleClick(){
+                console.log(this);
+                let value = this.refs.msg.value;
+                alert(value);
+            }
+            handleBlur(e){
+                console.log(e);
+                alert(e.target.value);
+            }
+            render(){
+                return (
+                    <div>
+                        <input ref="msg" type="text"/>
+                        <button onClick={this.handleClick}>提示点击事件</button>
+                        <input onBlur={this.handleBlur} type="text" placeholder="失去焦点提示数据"/>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App />,document.getElementById("example1"));
+    </script>
 </body>
 </html>
