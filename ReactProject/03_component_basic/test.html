@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        // 工厂函数创建组件
+        function MyComponent1(){
+            return <h2>通过函数创建组件</h2>
+        }
+        // es6 class定义组件
+        class MyComponent2 extends React.Component{
+            render(){
+                return <h3>es6自定义组件</h3>
+            }
+        }
+
+        var MyComponent3 = React.createClass({
+            render:function(){
+                return <h1>es5自定义标题</h1>
+            }
+        })
+        ReactDOM.render(<MyComponent1 />,document.getElementById("example1"));
+        ReactDOM.render(<MyComponent2 />,document.getElementById("example2"));
+        ReactDOM.render(<MyComponent3 />,document.getElementById("example3"));
+    </script>
+</body>
+</html>
