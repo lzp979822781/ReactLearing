@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -27,9 +28,9 @@
         }
 
         Person.propType = {
-            username:PropType.string.isRquired,
-            age:PropType.int.isRquired,
-            sex:PropType.string.isRquired
+            username:PropTypes.string.isRequired,
+            age:PropTypes.number.isRequired,
+            sex:PropTypes.string.isRequired
         }
 
         Person.defaultProps = {
@@ -43,7 +44,7 @@
         }
         
         ReactDOM.render(<Person username={person1.username} age={person1.age} sex={person1.sex} />,document.getElementById("example1"));
-        ReactDOM.render(<Person />,document.getElementById("example2"));
+        ReactDOM.render(<Person {...person1}/>,document.getElementById("example2"));
     </script>
 </body>
 </html>
