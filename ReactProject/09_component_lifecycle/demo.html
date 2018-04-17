@@ -18,22 +18,33 @@
             constructor(props){
                 super(props);
                 console.log(props);
-                this.state = {
-                    isLike:true
+                this.state={
+                    opacity:1
                 }
-                this.changeLike = this.changeLike.bind(this);
+                console.log("constructor");
             }
-            changeLike(){
-                this.setState({
-                    isLike:!this.state.isLike
-                })
+            
+
+            componentWillMount() {
+                console.log("componentWillMount 组件将要被挂载");
             }
 
+            componentDidMount() {
+                let {opacity} = this.state;
+                setInterval(() => {
+                    opacity-=0.05;
+                    if(opacity<0.1){
+                        opacity = 1;
+                    }
+                    this.setState({opacity})
+                }, 100);
+            }
             render(){
-                let {isLike} = this.state;
-                let msg = isLike ? '我喜欢贾静雯':'贾静雯喜欢我'
+                let {opacity} = this.state;
                 return (
-                    <h1 onClick={this.changeLike}>{msg}</h1>
+                    <div style={{opacity}}>
+                       www.tiger.com 
+                    </div>
                 )
             }
         }
