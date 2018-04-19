@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
+import PubSub from 'pubsub-js';
 import Add from '../Add/Add';
-import List from '../List/List'
+import List from '../List/List';
 class App extends Component{
     constructor(props){
         super(props);
@@ -10,6 +11,13 @@ class App extends Component{
                 {username:"雄安縣人",comment:"我在雄安有兩畝地"}
             ]
         }
+    }
+    componentWillMount(){
+        PubSub.subscribe("message",(msg,data)=>{
+            let {comments}=this.state;
+            comments.splice(data,1);
+            this.setState(comments);
+        })
     }
     add=(comment)=>{
         console.log(comment);
