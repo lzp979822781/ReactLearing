@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.bootcss.com/fetch/2.0.4/fetch.js"></script>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    gisturl:null
+                }
+            }
+            componentDidMount() {
+                let url = "https://api.github.com/users/octocat/gists";
+                // axios.get("https://api.github.com/users/octocat/gists").then(response=>{
+                //     console.log(response);
+                //     let data = response.data;
+                //     this.setState({
+                //         gisturl:data[0].html_url
+                //     });
+                    
+                // }).catch(error=>{
+                //     console.log(error);
+                // })
+                fetch(url).then(response=>{
+                    return response.json();
+                }).then(data=>{
+                    console.log(data);
+                }).catch(e=>{
+                    console.log(e);
+                })
+
+            }
+            render(){
+                let {gisturl} = this.state;
+                if(!gisturl){
+                    return (
+                        <div>
+                            <h2>loading</h2>
+                        </div>
+                    )
+                }else {
+                    return <p>octocat last gist is <a href={gisturl}>here</a></p>
+                }
+                
+            }
+        }
+        ReactDOM.render(<App />,document.getElementById('example1'))
+    </script>
+</body>
+</html>
